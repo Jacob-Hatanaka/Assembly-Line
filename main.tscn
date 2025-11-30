@@ -1,0 +1,100 @@
+[gd_scene load_steps=12 format=3 uid="uid://6t6w2etrblic"]
+
+[ext_resource type="Texture2D" uid="uid://brcylowwt4y77" path="res://assets/art/bg.png" id="1_5abjg"]
+[ext_resource type="Script" path="res://Inventory.cs" id="2_pha6b"]
+[ext_resource type="Script" path="res://Gather.cs" id="3_xmqfk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ad3ax"]
+bg_color = Color(0.482353, 0.596078, 0.768627, 1)
+border_width_top = 5
+border_color = Color(0.414379, 0.514105, 0.75535, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gh2px"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fg1x1"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yt3rn"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_abrow"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0.443137, 0.564706, 0.776471, 1)
+expand_margin_left = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e7rfx"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0.3904, 0.514396, 0.731332, 1)
+expand_margin_left = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u0o5o"]
+bg_color = Color(0.392157, 0.513726, 0.729412, 1)
+
+[sub_resource type="Theme" id="Theme_6plbd"]
+TabContainer/font_sizes/font_size = 40
+TabContainer/styles/panel = SubResource("StyleBoxFlat_ad3ax")
+TabContainer/styles/tab_disabled = SubResource("StyleBoxEmpty_gh2px")
+TabContainer/styles/tab_focus = SubResource("StyleBoxEmpty_fg1x1")
+TabContainer/styles/tab_hovered = SubResource("StyleBoxEmpty_yt3rn")
+TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_abrow")
+TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_e7rfx")
+TabContainer/styles/tabbar_background = SubResource("StyleBoxFlat_u0o5o")
+
+[node name="Main" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_right = 1920.0
+offset_bottom = 1079.0
+color = Color(0.481864, 0.595175, 0.769948, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+offset_right = 1923.0
+offset_bottom = 1079.0
+texture = ExtResource("1_5abjg")
+stretch_mode = 1
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+visible = false
+offset_left = -17.0
+offset_right = 1927.0
+offset_bottom = 94.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
+offset_right = 1927.0
+offset_bottom = 89.0
+color = Color(0.441674, 0.562771, 0.776889, 1)
+
+[node name="TabContainer" type="TabContainer" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme = SubResource("Theme_6plbd")
+current_tab = 2
+
+[node name="Craft" type="Control" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Inventory" type="Control" parent="TabContainer"]
+visible = false
+layout_mode = 2
+script = ExtResource("2_pha6b")
+metadata/_tab_index = 1
+
+[node name="Gather" type="Control" parent="TabContainer"]
+layout_mode = 2
+script = ExtResource("3_xmqfk")
+metadata/_tab_index = 2
+
+[node name="Quests" type="Control" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
