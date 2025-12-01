@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://6t6w2etrblic"]
+[gd_scene load_steps=13 format=3 uid="uid://6t6w2etrblic"]
 
 [ext_resource type="Texture2D" uid="uid://brcylowwt4y77" path="res://assets/art/bg.png" id="1_5abjg"]
+[ext_resource type="Script" path="res://Main.cs" id="1_g54s7"]
 [ext_resource type="Script" path="res://Inventory.cs" id="2_pha6b"]
 [ext_resource type="Script" path="res://Gather.cs" id="3_xmqfk"]
 
@@ -45,6 +46,7 @@ TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_e7rfx")
 TabContainer/styles/tabbar_background = SubResource("StyleBoxFlat_u0o5o")
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_g54s7")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
