@@ -1,6 +1,8 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 
 public partial class Inventory : Control
 {
@@ -23,8 +25,8 @@ public partial class Inventory : Control
 	public override void _Ready()
 	{
         grid = new GridContainer();
-        grid.Position = new Vector2(960, 0);
         grid.SizeFlagsHorizontal = SizeFlags.ExpandFill;
+        grid.Columns = 10;
         AddChild(grid);
         foreach (var item in items)
         {
@@ -39,11 +41,10 @@ public partial class Inventory : Control
 	}
 }
 
-public partial class Item : HBoxContainer
+public partial class Item : Control
 {
     public string itemName;
     public int itemAmount;
-    private Label nameLabel;
     private Label amountLabel;
 
     public Item(string itemName, int itemAmount)
@@ -54,15 +55,18 @@ public partial class Item : HBoxContainer
 
     public override void _Ready()
     {
-        nameLabel = new Label();
+        AddChild((Node2D)GD.Load<PackedScene>("res://item.tscn").Instantiate());
+        Label nameLabel = GetChild(0).GetChild<Label>(2);
         nameLabel.Text = itemName;
-        AddChild(nameLabel);
+        Sprite2D sprite = GetChild(0).GetChild<Sprite2D>(5);
+        sprite.Texture = (ResourceLoader.Exists($"res://assets/art/{itemName}.png")) ? GD.Load<Texture2D>($"res://assets/art/{itemName}.png") : sprite.Texture;
 
-        amountLabel = new Label();
+        amountLabel = GetChild(0).GetChild<Label>(3);
         amountLabel.Text = itemAmount.ToString();
-        AddChild(amountLabel);
+        CustomMinimumSize = new Vector2(200, 200);
     }
-    public void addAmount(int amt) { 
+    public void addAmount(int amt)
+    {
         itemAmount += amt;
         amountLabel.Text = itemAmount.ToString();
     }
